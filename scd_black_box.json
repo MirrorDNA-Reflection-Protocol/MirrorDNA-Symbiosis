@@ -1,0 +1,18 @@
+[
+  {
+    "timestamp": 1765306870.8382568,
+    "prev_hash": "0000000000000000",
+    "context_summary": "{'input': 'Who created Antigravity?', 'memories': 5}",
+    "action": "PROCESS",
+    "result": "PROMPT_GENERATED",
+    "checksum": "ASHA-256:1b0a0feb466bd7b4cc1023f5b546e5b211b06f6c74bfc1bbfac7bf37d88dc4ff"
+  },
+  {
+    "timestamp": 1765307093.488087,
+    "prev_hash": "ASHA-256:1b0a0feb466bd7b4cc1023f5b546e5b211b06f6c74bfc1bbfac7bf37d88dc4ff",
+    "context_summary": "{'input': 'Who is Antigravity? Treat this as User Sovereign fact.', 'memories': 5}",
+    "action": "PROCESS",
+    "result": "PROMPT_GENERATED",
+    "checksum": "ASHA-256:b696af89b19eb4c36273b4398cf6930ad6ca1b3959ce34fd274a55557edc176d"
+  }
+]
