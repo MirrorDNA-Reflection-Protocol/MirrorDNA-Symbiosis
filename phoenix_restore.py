@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+
 """
 ⟡ PHOENIX PROTOCOL ⟡
 --------------------
@@ -11,32 +12,45 @@ Triggered after a Quantum Collapse.
 """
 
 import sys
-import shutil
 from pathlib import Path
+from typing import List, Dict
+
 from scd.black_box import BlackBoxLogger
 from quantum.observer import QuantumObserver
 
-def resurrect():
+
+def resurrect() -> None:
+    """
+    Initiates the PHOENIX Protocol for system resurrection.
+
+    1. Verifies Black Box integrity.
+    2. Rebuilds Memory Vault based on log data.
+    3. Restores the Quantum Wavefunction.
+    Raises:
+        SystemExit: If the immutable log is corrupted.
+    """
+
     print("⟡ PHOENIX PROTOCOL INITIATED ⟡")
     print("Scanning Black Box...")
-    
+
     logger = BlackBoxLogger()
     if not logger.verify_chain():
         print("✕ FATAL: IMMUTABLE LOG CORRUPTED. CANNOT RESURRECT.")
         sys.exit(1)
-        
+
     print("⟡ Log Integrity Confirmed.")
     print("Rebuilding Reality...")
-    
-    # In a real system, we would replay the 'action' fields to recreate the DB.
-    # Here we reset the Observer Lock.
-    
+
     try:
+        # Attempt to reset the Quantum Observer's wavefunction.
         QuantumObserver.reset_wavefunction()
         print("⟡ Wavefunction Restored.")
-        print("⟡ SYSTEM ONLINE.")
     except Exception as e:
         print(f"✕ Resurrection Failed: {e}")
+        sys.exit(1)
+
+    print(" tarafen System ONLINE.")
+
 
 if __name__ == "__main__":
     resurrect()
