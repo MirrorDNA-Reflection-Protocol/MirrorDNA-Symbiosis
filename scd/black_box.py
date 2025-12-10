@@ -87,3 +87,12 @@ class BlackBoxLogger:
                  
         print("⟡ Black Box Integrity: VERIFIED")
         return True
+
+    def get_recent_entries(self, limit: int = 50) -> list:
+        """
+        Returns the last N entries from the history.
+        Used by the Dreaming Engine for log replay.
+        """
+        if not self.history:
+            return []
+        return self.history[-limit:]
