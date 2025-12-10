@@ -12,11 +12,13 @@ import time
 from typing import Dict, Any
 from pathlib import Path
 from .scd_core import SCDProtocol
+from ..immune_system.healer import SovereignHealer
 
 class BlackBoxLogger:
     def __init__(self, log_path: str = "scd_black_box.json"):
         self.log_path = Path(log_path)
         self.history = self._load_history()
+        self.healer = SovereignHealer()
         
     def _load_history(self) -> list:
         if self.log_path.exists():
@@ -66,6 +68,21 @@ class BlackBoxLogger:
             prev_entry = self.history[i-1]
             if entry['prev_hash'] != prev_entry['checksum']:
                  print(f"!! CHAIN BROKEN at T_{i}")
+                 
+                 # ⟡ IMMUNE RESPONSE ⟡
+                 print(f"  ⟡ Triggering Immune System for T_{i}...")
+                 details = {
+                     "violation": "Chain Break",
+                     "index": i,
+                     "expected_prev": prev_entry['checksum'],
+                     "actual_prev": entry['prev_hash']
+                 }
+                 self.healer.log_immune_event("INTEGRITY_FAILURE", details)
+                 
+                 # Active Healing: Attempt to repair the link (Simulation for now)
+                 # In a real scenario, this might re-hash or flag for manual review
+                 # Here we just log the attempt
+                 
                  return False
                  
         print("⟡ Black Box Integrity: VERIFIED")
