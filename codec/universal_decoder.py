@@ -52,11 +52,21 @@ RESPOND TO USER INPUT:
         
         for m in memories:
             from xml.sax.saxutils import escape
-            content = m.content[:200] + "..." if len(m.content) > 200 else m.content
+            
+            # Handle both dictionary and object representations
+            if isinstance(m, dict):
+                content = m.get('content', '')
+                vault_id = m.get('vault_id', 'unknown')
+                weight = m.get('score', 1.0)
+            else:
+                content = m.content
+                vault_id = m.vault_id
+                weight = m.score or 1.0
+                
+            content = content[:200] + "..." if len(content) > 200 else content
             safe_content = escape(content)
-            weight = m.score or 1.0
             total_weight += weight
-            mem_strings.append(f"    &lt;memory id='{m.vault_id}' weight='{weight:.2f}'&gt;\n      {safe_content}\n    &lt;/memory&gt;")
+            mem_strings.append(f"    &lt;memory id='{vault_id}' weight='{weight:.2f}'&gt;\n      {safe_content}\n    &lt;/memory&gt;")
             
         avg_weight = total_weight / len(memories) if memories else 1.0
         
