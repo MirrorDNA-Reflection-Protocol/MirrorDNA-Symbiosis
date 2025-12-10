@@ -12,7 +12,7 @@ import time
 from typing import Dict, Any
 from pathlib import Path
 from .scd_core import SCDProtocol
-from ..immune_system.healer import SovereignHealer
+from immune_system.healer import SovereignHealer
 
 class BlackBoxLogger:
     def __init__(self, log_path: str = "scd_black_box.json"):
