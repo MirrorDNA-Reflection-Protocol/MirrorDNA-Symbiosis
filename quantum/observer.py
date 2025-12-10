@@ -9,6 +9,7 @@ If an unauthorized mutation is observed, the system collapses into Lockdown.
 
 from typing import Callable, Any
 from .lattice import LatticeShield
+from ..immune_system.healer import SovereignHealer
 
 class QuantumCollapse(Exception):
     """Raised when the system integrity wavefunction collapses."""
@@ -27,6 +28,12 @@ class QuantumObserver:
             raise QuantumCollapse("SYSTEM IN QUANTUM LOCKDOWN (Use 'reset_wavefunction' to restore or git restore).")
             
         if not LatticeShield.verify_integrity(data, expected_hash):
+            # ⟡ QUANTUM SELF-RESURRECTION ATTEMPT ⟡
+            healer = SovereignHealer()
+            if healer.heal_structure(data, expected_hash):
+                print(f"⟡ QUANTUM RESURRECTION: Wavefunction stabilized via SovereignHealer.")
+                return
+
             cls._trigger_collapse(data)
             
     @classmethod
