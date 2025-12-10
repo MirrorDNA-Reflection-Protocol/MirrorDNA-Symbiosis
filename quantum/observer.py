@@ -9,7 +9,7 @@ If an unauthorized mutation is observed, the system collapses into Lockdown.
 
 from typing import Callable, Any
 from .lattice import LatticeShield
-from ..immune_system.healer import SovereignHealer
+from immune_system.healer import SovereignHealer
 
 class QuantumCollapse(Exception):
     """Raised when the system integrity wavefunction collapses."""
