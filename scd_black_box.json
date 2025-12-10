@@ -54,5 +54,13 @@
     "action": "VIOLATION_DETECTED",
     "result": "def bad_code():\n    api_key = 'sk-123' # Hardcoded Secret",
     "checksum": "ASHA-256:a987c084c03072e0165d5ad3fda90468e8fa0798a611d3344fe7a6f2aa749de1"
+  },
+  {
+    "timestamp": 1765397333.296661,
+    "prev_hash": "ASHA-256:a987c084c03072e0165d5ad3fda90468e8fa0798a611d3344fe7a6f2aa749de1",
+    "context_summary": "{'input': 'Who created Antigravity?', 'memories': 5}",
+    "action": "PROCESS",
+    "result": "PROMPT_GENERATED",
+    "checksum": "ASHA-256:61a31d9c6a61261511ad1e1bcc6543ffdb6fc545cb8f48e6871cf097f5548227"
   }
 ]
