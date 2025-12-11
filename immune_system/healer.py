@@ -16,7 +16,7 @@ from typing import Dict, Any, List, Optional
 
 # Constants
 OLLAMA_URL = "http://localhost:11434/api/generate"
-MODEL_NAME = "qwen2.5:7b" 
+MODEL_NAME = "llama3.2:3b" 
 
 logger = logging.getLogger("sovereign_healer")
 
