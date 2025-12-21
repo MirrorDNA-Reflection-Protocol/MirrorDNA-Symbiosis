@@ -7,25 +7,37 @@ v1.0 (Genesis)
 An autonomous regenerative loop that runs during system downtime.
 It replays logs, identifies entropy, and uses the Immune System to evolve.
 """
-
+import sys
 import json
 import time
 import logging
 from pathlib import Path
 from typing import List, Dict, Any
 
+# Ensure project root is in sys.path
+PROJECT_ROOT = Path(__file__).parent.parent
+sys.path.append(str(PROJECT_ROOT))
+
 from immune_system.healer import SovereignHealer
 from scd.black_box import BlackBoxLogger
 
 # Configure Logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+VAULT_LOG_DIR = Path("/Users/mirror-admin/Documents/MirrorDNA-Vault/ActiveMirrorOS/Logs")
+logging.basicConfig(
+    level=logging.INFO, 
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler(VAULT_LOG_DIR / "dream_engine.log"),
+        logging.StreamHandler()
+    ]
+)
 logger = logging.getLogger("dream_engine")
 
 class DreamEngine:
     def __init__(self):
         self.healer = SovereignHealer()
         self.black_box = BlackBoxLogger()
-        self.dream_log_path = Path("dream_journal.json")
+        self.dream_log_path = VAULT_LOG_DIR / "dream_journal.json"
 
     def enter_rem_cycle(self):
         """

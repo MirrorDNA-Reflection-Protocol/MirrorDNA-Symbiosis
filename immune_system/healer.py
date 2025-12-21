@@ -8,21 +8,26 @@ The Sovereign Healer observes system state and autonomicly corrects
 constitutional violations and integrity drifts.
 """
 
+import sys
 import json
 import requests
 import logging
 from pathlib import Path
 from typing import Dict, Any, List, Optional
 
+# Import Spine from MirrorDNA-Standard
+sys.path.append("/Users/mirror-admin/Documents/MirrorDNA-Standard")
+from spine.genesis_spine import NeuralInterface
+
 # Constants
 OLLAMA_URL = "http://localhost:11434/api/generate"
-MODEL_NAME = "llama3.2:3b" 
+MODEL_NAME = "mirrorbrain-ami:latest" 
 
 logger = logging.getLogger("sovereign_healer")
 
 class SovereignHealer:
     def __init__(self, model_name: str = MODEL_NAME):
-        self.model_name = model_name
+        self.neural = NeuralInterface(model=model_name, base_url=OLLAMA_URL)
         self.audit_log = []
 
     def heal_content(self, content: str, violation_context: str) -> str:
@@ -50,33 +55,9 @@ class SovereignHealer:
         {content}
         """
         
-        try:
-            response = requests.post(
-                OLLAMA_URL,
-                json={
-                    "model": self.model_name,
-                    "prompt": prompt,
-                    "stream": False,
-                    "options": {"temperature": 0.1}
-                }
-            )
-            response.raise_for_status()
-            result = response.json()['response'].strip()
-            
-            # Unwrap code blocks if present
-            if result.startswith("```"):
-                lines = result.splitlines()
-                if lines[0].startswith("```"):
-                    lines = lines[1:]
-                if lines[-1].startswith("```"):
-                    lines = lines[:-1]
-                result = "\n".join(lines)
-                
-            return result
-            
-        except Exception as e:
-            logger.error(f"Healer failed: {e}")
-            return content
+        result = self.neural.generate(prompt, temperature=0.1)
+        return result if result else content
+
 
     def heal_structure(self, data: Any, expected_hash: str) -> bool:
         """
