@@ -82,21 +82,19 @@ class DreamEngine:
         return targets
 
     def _synthesis(self, targets: List[Dict[str, Any]]):
-        """Uses Healer to optimize."""
-        logger.info("  Phase 3: Synthesis (Active Evolution)")
+        """Uses Healer to optimize with AXIOM reflection context."""
+        logger.info("  Phase 3: Synthesis (Reflective Evolution)")
         
         for target in targets:
-            logger.info(f"  Optimizing target T_{target.get('timestamp')}...")
-            # In a real scenario, we would locate the source file and optimize it.
-            # Here we simulate the dream logic.
+            logger.info(f"  Reflecting on target T_{target.get('timestamp')}...")
             
-            # Context for the Healer
-            context = f"Optimize response to error event: {target.get('action')}"
+            # Context for the Healer: Injects AXIOM Reflection request
+            context = f"Reflect on this constitutional violation: {target.get('action')}. Synthesize a fix that aligns with MirrorDNA sovereignty."
             
-            # We treat the 'result' as the content to optimize
             content_to_fix = str(target.get('result', ''))
             
             if content_to_fix:
+                # The Healer now uses the Reflective Spine
                 improved = self.healer.heal_content(content_to_fix, context)
                 self._log_dream(target, improved)
 

@@ -26,8 +26,9 @@ MODEL_NAME = "mirrorbrain-ami:latest"
 logger = logging.getLogger("sovereign_healer")
 
 class SovereignHealer:
-    def __init__(self, model_name: str = MODEL_NAME):
-        self.neural = NeuralInterface(model=model_name, base_url=OLLAMA_URL)
+    def __init__(self, model_name: str = "qwen3-8b-turbo"):
+        # Project OMEGA: NeuralInterface now defaults to V1 AXIOM API
+        self.neural = NeuralInterface(model=model_name)
         self.audit_log = []
 
     def heal_content(self, content: str, violation_context: str) -> str:
