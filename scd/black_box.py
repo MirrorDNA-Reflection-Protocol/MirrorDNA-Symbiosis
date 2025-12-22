@@ -15,7 +15,7 @@ from .scd_core import SCDProtocol
 from immune_system.healer import SovereignHealer
 
 class BlackBoxLogger:
-    def __init__(self, log_path: str = "scd_black_box.json"):
+    def __init__(self, log_path: str = "/Users/mirror-admin/Documents/MirrorDNA-Vault/ActiveMirrorOS/Logs/scd_black_box.json"):
         self.log_path = Path(log_path)
         self.history = self._load_history()
         self.healer = SovereignHealer()
