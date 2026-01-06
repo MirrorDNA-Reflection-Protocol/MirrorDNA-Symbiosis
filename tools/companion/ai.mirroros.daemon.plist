@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>ai.mirroros.daemon</string>
+    
+    <key>ProgramArguments</key>
+    <array>
+        <string>/usr/bin/python3</string>
+        <string>/Users/mirror-admin/Documents/MirrorDNA-Symbiosis/tools/companion/daemon.py</string>
+    </array>
+    
+    <key>RunAtLoad</key>
+    <true/>
+    
+    <key>KeepAlive</key>
+    <dict>
+        <key>SuccessfulExit</key>
+        <false/>
+        <key>Crashed</key>
+        <true/>
+    </dict>
+    
+    <key>ThrottleInterval</key>
+    <integer>60</integer>
+    
+    <key>StandardOutPath</key>
+    <string>/Users/mirror-admin/.mirrordna/daemon/daemon.log</string>
+    
+    <key>StandardErrorPath</key>
+    <string>/Users/mirror-admin/.mirrordna/daemon/daemon_error.log</string>
+    
+    <key>WorkingDirectory</key>
+    <string>/Users/mirror-admin/Documents/MirrorDNA-Symbiosis/tools/companion</string>
+    
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>HOME</key>
+        <string>/Users/mirror-admin</string>
+        <key>PATH</key>
+        <string>/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin</string>
+        <key>PYTHONPATH</key>
+        <string>/Users/mirror-admin/Documents/MirrorDNA-Symbiosis/tools</string>
+    </dict>
+    
+    <key>ProcessType</key>
+    <string>Background</string>
+    
+    <key>LowPriorityIO</key>
+    <true/>
+    
+    <key>Nice</key>
+    <integer>10</integer>
+</dict>
+</plist>
