@@ -1,0 +1,5 @@
+
+# Logs & State
+dreaming/dream.log
+logs/*.log
+state/
