@@ -1,5 +1,6 @@
 
 # Logs & State
 dreaming/dream.log
+dreaming/digest.log
 logs/*.log
 state/
